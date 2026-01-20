@@ -8,7 +8,7 @@ def get_dataloaders(model_id, batch_size, max_length):
 
     dataset = load_dataset("wikitext", "wikitext-2-raw-v1", split="train[:5%]")
     
-    split_dataset = dataset.train_test_split(test_size=0.2, seed=42)
+    split_dataset = dataset.train_test_split(test_size=0.5, seed=42)
     train_ds = split_dataset["train"]
     val_ds = split_dataset["test"]
 
