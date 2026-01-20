@@ -3,8 +3,8 @@ import yaml
 import numpy as np
 from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
 from peft import LoraConfig, get_peft_model
-from flexora.utils.helpers import get_specific_target_modules 
-from flexora.data.loader import get_dataloaders
+from utils.helpers import get_specific_target_modules 
+from data.loader import get_dataloaders
 
 def main():
     with open("config.yaml", "r") as f:
