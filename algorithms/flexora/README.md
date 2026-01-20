@@ -8,6 +8,32 @@ cd peft-lora-quantization/algorithms/flexora
 pip install -r requirements.txt
 ```
 
+## Configuration - `config.yaml`
+```yaml
+model:
+  name: "meta-llama/Llama-3.2-1B"
+  num_layers: 32
+
+lora:
+  r: 8
+  lora_alpha: 16
+  target_modules: ["q_proj", "v_proj"]
+  lora_dropout: 0.05
+
+search:
+  search_steps: 100
+  lr_model: 1.0e-4
+  lr_alpha: 3.0e-2
+  batch_size: 2
+  max_length: 512
+
+finetune:
+  epochs: 10
+  lr: 1e-4
+  batch_size: 4
+```
+
+
 ## Search layer for fine-tuning stage
 ```
 python main.py
@@ -17,7 +43,7 @@ python main.py
 ```
 python finetune.py
 ```
-
+> `latest version: 1.0`
 ## Reference
 ```bib
 @inproceedings{wei2025flexora,
