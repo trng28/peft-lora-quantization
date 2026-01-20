@@ -3,8 +3,8 @@ import yaml
 import numpy as np
 from transformers import AutoModelForCausalLM, TrainingArguments, Trainer
 from peft import LoraConfig, get_peft_model
-from utils.helpers import get_specific_target_modules
-from data.loader import get_dataloaders
+from flexora.utils.helpers import get_specific_target_modules 
+from flexora.data.loader import get_dataloaders
 
 def main():
     with open("config.yaml", "r") as f:
@@ -16,31 +16,34 @@ def main():
         print("Error: Run search step first!")
         return
 
-    print(f"Fine-tuning with specific layers: {selected_indices}")
+    print(f"Fine-tuning on {len(selected_indices)} layers: {selected_indices}")
 
+    # Setup Specific Target Modules
     target_modules = get_specific_target_modules(
         selected_indices, 
         cfg['lora']['target_modules']
     )
-    print(f"Generated {len(target_modules)} regex targets.")
+    
+    print(f"Example targets: {target_modules[:3]}")
 
     base_model = AutoModelForCausalLM.from_pretrained(
         cfg['model']['name'],
-        torch_dtype=torch.bfloat16,
+        dtype=torch.bfloat16,  
         device_map="auto"
     )
 
-    # LoRA (Selective)
     peft_config = LoraConfig(
         r=cfg['lora']['r'],
         lora_alpha=cfg['lora']['lora_alpha'],
-        target_modules=target_modules, #Only fine-tune selected layers
+        target_modules=target_modules, 
         lora_dropout=cfg['lora']['lora_dropout'],
         bias="none",
         task_type="CAUSAL_LM"
     )
     
     model = get_peft_model(base_model, peft_config)
+    
+    # verify Flexora 
     model.print_trainable_parameters()
     
     train_loader, _ = get_dataloaders(
@@ -59,7 +62,6 @@ def main():
         save_strategy="epoch"
     )
     
-
     trainer = Trainer(
         model=model,
         args=args,
