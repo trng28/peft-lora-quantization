@@ -15,6 +15,7 @@
 |[**Exploring Quantization for Efficient Pre-Training of Transformer Language Models**](https://aclanthology.org/2024.findings-emnlp.787.pdf)|EMNLP'24|
 |[**ApiQ: Finetuning of 2-Bit Quantized Large Language Model**](https://aclanthology.org/2024.emnlp-main.1168.pdf)|EMNLP'24|
 |[**On the Impact of Calibration Data in Post-training Quantization and Pruning**](https://aclanthology.org/2024.acl-long.544.pdf)|ACL'24|
+|[**LRQuant: Learnable and Robust Post-Training Quantization for Large Language Models**](https://aclanthology.org/2024.acl-long.122.pdf)|ACL'24|
 |[**DoRA: Weight-Decomposed Low-Rank Adaptation**](https://openreview.net/pdf?id=3d5CIRG1n2)|ICML'24|
 |[**OmniQuant: Omnidirectionally Calibrated Quantization for Large Language Models**](https://openreview.net/pdf?id=8Wuvhh0LYW)|ICLR'24|
 |[**Pissa: Principal singular values and singular vectors adaptation of large language models**](https://proceedings.neurips.cc/paper_files/paper/2024/file/db36f4d603cc9e3a2a5e10b93e6428f2-Paper-Conference.pdf)| NeurIPS'24|
